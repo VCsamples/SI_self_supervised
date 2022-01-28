@@ -47,22 +47,19 @@
         <div class="row align-items-center">
           <div class="col-md-12">
             <h2><a class="text-light">
-              Test <br> for Cross-Lingual Personalized Speech Generation </a></h2>
+              Mel-S3R: Combining Mel-Spectrogram and Self-Supervised Speech Representation for Voice Conversion </a></h2>
             <p>
                           <p>
               <div class="row">
                 <div class="col-md col-sm-12"><a class="text-light"
-                    href="https://scholar.google.com/citations?user=_POzpM4AAAAJ&hl=en">Yi Zhou, <em>Student Member, IEEE</em> </a> </div>
+                    href="https://scholar.google.com/citations?user=-atAl-YAAAAJ&hl=en&oi=ao">Jichen Yang, <em>Senior Member, IEEE</em> </a> </div>
                 <div class="col-md col-sm-12"><a class="text-light"
-                    href="https://scholar.google.com.sg/citations?user=6gc45QcAAAAJ&hl=en&oi=ao">Xiaohai Tian, <em>Member, IEEE</em>  </a> </div>
+                    href="https://scholar.google.com/citations?hl=en&user=_POzpM4AAAAJ">Yi Zhou, <em>Student Member, IEEE</em>  </a> </div>
                 <div class="col-md col-sm-12"><a class="text-light"
-                    href="https://scholar.google.com/citations?user=z8_x7C8AAAAJ&hl=en">Haizhou Li, <em>Fellow, IEEE</em> </a>  </div>
+                    href="">Hao Huang, <em>Member, IEEE</em> </a>  </div>
               </div>
             </p>
-             <p><a class="text-light"> Department of Electrical and Computer Engineering, National University of Singapore, Singapore</a><br>
-              <div class="row">
-              </div>
-            </p>
+
 
           </div>
         </div>
@@ -76,48 +73,46 @@
           <h2>Speech Samples</h2>
           <hr>
           <p>The model is evaluated with bilingual speakers from:<br>
-            the EMIME Mandarin Bilingual Database [<a class="text-success" href="#1">1</a>]:</p>
+            the CMU Arctic Database</p>
           <hr>
                 <p>
-                  We are comparing the baseline <b><em>d-vector</em></b> speaker embedding with the proposed <b><em>LA-SE</em></b> speaker embedding through three case studies for cross-lingual personalized speech generation:<br>
-                  <b> (1) Multi-Task WaveRNN for Cross-Lingual Voice Conversion</b>:<br>
+                  We have 7 different voice conversion systems with different configurations. They are compared in three groups:<br>
+                  <b> (1) Using different features for Voice Conversion</b>:<br>
                           In this case study, there 4 systems for comparison:<br>
-                          (a) <em>d-vector</em> (cross): The Multi-Task WaveRNN framework conditioned on <em>d-vector</em> obtained under the cross-lingual condition.<br>
-                          (b) <em>d-vector</em> (mono): The Multi-Task WaveRNN framework conditioned on <em>d-vector</em> obtained under the monolingual condition.<br>
-                          (c) <em>LA-SE</em> (cross): The Multi-Task WaveRNN framework conditioned on <em>LA-SE</em> obtained under the cross-lingual condition.<br>
-                          (d) <em>LA-SE</em> (mono): The Multi-Task WaveRNN framework conditioned on <em>LA-SE</em> obtained under the monolingual condition.<br>
-                  <b> (2) CycleVAE for Cross-Lingual Voice Conversion</b>:<br>
-                          In this case study, there 2 systems for comparison:<br>
-                          (a) <em>d-vector</em>: The CycleVAE framework conditioned on <em>d-vector</em> obtained under the cross-lingual condition. <br>
-                          (b) <em>LA-SE</em>: The CycleVAE framework conditioned on <em>LA-SE</em> obtained under the cross-lingual condition.<br>
+                          (a) <em>Mel_VC</em> : The baseline voice conversion system, where Mel-spectrogram features are used as the voice conversion network input.<br>
+                          (b) <em>S3R_VC</em> : The baseline voice conversion system that only takes S3R representation as the input features to the voice conversion network.<br>
+                          (c) <em>Mel-S3R_VC</em> : The voice conversion system with the proposed Mel-S3R speech representation as the input features to the voice conversion network.<br>
+</br>
+                  <b> (2) Using different self-attention blocks</b>:<br>
+                          The second group presents an ablation study about the self-attention. We compare the following 4 systems:<br>
+                          (a) <em>FUSE</em> : In this system, the Mel-S3R network only consists of the fuse-attention block (FA) while the input and output attention blocks are discarded. <br>
+                          (b) <em>SAF</em> : The Mel-S3R network has the input attention block SAF and the fuse-attention FA. Features obtained by such a Mel-S3R network are used as the voice conversion network input.<br>
+                          (c) <em>SAV</em> : In this system, the speech representation is obtained by the FA and the SAV blocks.<br>
+                          (d) <em>Mel-S3R_VC</em> : The proposed Mel-S3R network with SAF, FA, and the SAV.<br>
+                  </br>
 
-                  <b> (3) Tacotron-2 for Text-to-Speech Synthesis</b><br>
-                          In this case study, there 2 systems for comparison:<br>
-                          (a) <em>d-vector</em>: The Tacotron-2 framework conditioned on <em>d-vector</em> obtained under the cross-lingual condition.<br>
-                          (b) <em>LA-SE</em>: The Tacotron-2 framework conditioned on <em>LA-SE</em> obtained under the cross-lingual condition.<br>
+                  <b> (3) Different combination methods:</b><br>
+                          The third group focuses on the ablation study about feature combination methods by comparing 3 systems:<br>
+                          (a) <em>CONCAT</em>: The Mel-spectrogram and S3R features are concatenated and used as input features for the voice conversion network.<br>
+                          (b) <em>FUSE</em>: The same system in the second comparison group (2)(a), where only the fuse-attention is used to combine the features.<br>
+                          (c) <em>Mel-S3R_VC</em> : The proposed Mel-S3R features which are obtained by the 3 attention blocks in the combination network.<br>
             <hr>
                   <b>Source</b>: Speech from a source speaker, we hope to preserve the speech content. <br>
                   <b>Target</b>: Speech from a target speaker, we hope the converted speech sound like this speaker's voice. <br>
-                  <b>Reference</b>: Reference speech from the target speaker speaking the source content. <br>
-            <hr>
-
-            <b>ENG &rarr; MAN</b>:<br>
-            we are converting an English source utterance to a Mandarin target speaker's voice.<br>
-            <b>MAN &rarr; ENG</b>:<br>
-            we are converting a Mandarin source utterance to an English target speaker's voice.<br>
 
             <hr>
+
 
                   <div class="big-screen">
-                    <b> (1) Multi-Task WaveRNN for Cross-Lingual Voice Conversion </b><br>
+                    <b> (1) Using different features for Voice Conversion </b><br>
                     <table class="table">
                       <thead>
                         <tr>
-                          <th style="width:200px;">ENG &rarr; MAN</th>
-                          <th>Female &rarr; Female </th>
-                          <th>Female &rarr; Male</th>
-                          <th>Male &rarr; Female</th>
-                          <th>Male &rarr; Male</th>
+                          <th style="width:200px;">System</th>
+                          <th>Female &rarr; Female (F2F) </th>
+                          <th>Female &rarr; Male (F2M)</th>
+                          <th>Male &rarr; Female (M2F)</th>
+                          <th>Male &rarr; Male (M2M)</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -125,25 +120,25 @@
                           <th scope="row">Source    </th>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/source/2.wav" type="audio/wav" />
+                              <source src="./audio/feature/source/clb2slt.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/source/4.wav" type="audio/wav" />
+                              <source src="./audio/feature/source/clb2bdl.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/source/1.wav" type="audio/wav" />
+                              <source src="./audio/feature/source/rms2slt.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/source/3.wav" type="audio/wav" />
+                              <source src="./audio/feature/source/rms2bdl.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
@@ -153,374 +148,116 @@
                           <th scope="row">Target    </th>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/target/2.wav" type="audio/wav" />
+                              <source src="./audio/feature/target/clb2slt.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/target/4.wav" type="audio/wav" />
+                              <source src="./audio/feature/target/clb2bdl.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/target/1.wav" type="audio/wav" />
+                              <source src="./audio/feature/target/rms2slt.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/target/3.wav" type="audio/wav" />
+                              <source src="./audio/feature/target/rms2bdl.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
 
                           </tr>
                         <tr>
-                          <th scope="row">(a) <em>d-vector</em> (cross)  </th>
+                          <th scope="row">(a) <em>Mel_VC</em>  </th>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/dvector_cross/2.wav" type="audio/wav" />
+                              <source src="./audio/feature/mel/clb2slt.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/dvector_cross/4.wav" type="audio/wav" />
+                              <source src="./audio/feature/mel/clb2bdl.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/dvector_cross/1.wav" type="audio/wav" />
+                              <source src="./audio/feature/mel/rms2slt.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/dvector_cross/3.wav" type="audio/wav" />
+                              <source src="./audio/feature/mel/rms2bdl.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
 
                           </tr>
                         <tr>
-                          <th scope="colmun">(b) <em>d-vector</em> (mono)</th>
+                          <th scope="colmun">(b) <em>S3R_VC</em></th>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/dvector_mono/2.wav" type="audio/wav" />
+                              <source src="./audio/feature/s3r/clb2slt.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/dvector_mono/4.wav" type="audio/wav" />
+                              <source src="./audio/feature/s3r/clb2bdl.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/dvector_mono/1.wav" type="audio/wav" />
+                              <source src="./audio/feature/s3r/rms2slt.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
                           <td>
                             <audio controls>
-                              <source src="./audio/wavernn/dvector_mono/3.wav" type="audio/wav" />
+                              <source src="./audio/feature/s3r/rms2bdl.wav" type="audio/wav" />
                               Your browser does not support the audio element.
                             </audio>
                           </td>
 
                           </tr>
                           <tr>
-                            <th scope="colmun">(c) <em>LA-SE</em> (cross)</th>
+                            <th scope="colmun">(c) <em>Mel-S3R_VC</em></th>
                             <td>
                               <audio controls>
-                                <source src="./audio/wavernn/lase_cross/2.wav" type="audio/wav" />
+                                <source src="./audio/feature/mels3r/clb2slt.wav" type="audio/wav" />
                                 Your browser does not support the audio element.
                               </audio>
                             </td>
                             <td>
                               <audio controls>
-                                <source src="./audio/wavernn/lase_cross/4.wav" type="audio/wav" />
+                                <source src="./audio/feature/mels3r/clb2bdl.wav" type="audio/wav" />
                                 Your browser does not support the audio element.
                               </audio>
                             </td>
                             <td>
                               <audio controls>
-                                <source src="./audio/wavernn/lase_cross/1.wav" type="audio/wav" />
+                                <source src="./audio/feature/mels3r/rms2slt.wav" type="audio/wav" />
                                 Your browser does not support the audio element.
                               </audio>
                             </td>
                             <td>
                               <audio controls>
-                                <source src="./audio/wavernn/lase_cross/3.wav" type="audio/wav" />
+                                <source src="./audio/feature/mels3r/rms2bdl.wav" type="audio/wav" />
                                 Your browser does not support the audio element.
                               </audio>
                             </td>
                             </tr>
-                            <tr>
-                              <th scope="colmun">(d) <em>LA-SE</em> (mono)</th>
-                              <td>
-                                <audio controls>
-                                  <source src="./audio/wavernn/lase_mono/2.wav" type="audio/wav" />
-                                  Your browser does not support the audio element.
-                                </audio>
-                              </td>
-                              <td>
-                                <audio controls>
-                                  <source src="./audio/wavernn/lase_mono/4.wav" type="audio/wav" />
-                                  Your browser does not support the audio element.
-                                </audio>
-                              </td>
-                              <td>
-                                <audio controls>
-                                  <source src="./audio/wavernn/lase_mono/1.wav" type="audio/wav" />
-                                  Your browser does not support the audio element.
-                                </audio>
-                              </td>
-                              <td>
-                                <audio controls>
-                                  <source src="./audio/wavernn/lase_mono/3.wav" type="audio/wav" />
-                                  Your browser does not support the audio element.
-                                </audio>
-                              </td>
-                              </tr>
-                          <tr>
-                            <th scope="row">Reference    </th>
-                            <td>
-                              <audio controls>
-                                <source src="./audio/wavernn/reference/2.wav" type="audio/wav" />
-                                Your browser does not support the audio element.
-                              </audio>
-                            </td>
-                            <td>
-                              <audio controls>
-                                <source src="./audio/wavernn/reference/4.wav" type="audio/wav" />
-                                Your browser does not support the audio element.
-                              </audio>
-                            </td>
-                            <td>
-                              <audio controls>
-                                <source src="./audio/wavernn/reference/1.wav" type="audio/wav" />
-                                Your browser does not support the audio element.
-                              </audio>
-                            </td>
-                            <td>
-                              <audio controls>
-                                <source src="./audio/wavernn/reference/3.wav" type="audio/wav" />
-                                Your browser does not support the audio element.
-                              </audio>
-                            </td>
 
-                            </tr>
                         </p>
-                        <div class="big-screen">
-                          <table class="table">
-                            <thead>
-                              <tr>
-                                <th style="width:200px;">MAN &rarr; ENG</th>
-                                <th>Female &rarr; Female </th>
-                                <th>Female &rarr; Male</th>
-                                <th>Male &rarr; Female</th>
-                                <th>Male &rarr; Male</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">Source    </th>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/source/5.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/source/8.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/source/6.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/source/7.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
 
-                                </tr>
-                              <tr>
-                                <th scope="row">Target    </th>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/target/5.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/target/8.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/target/6.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/target/7.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-
-                                </tr>
-                              <tr>
-                                <th scope="row">(a) <em>d-vector</em> (cross)  </th>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/dvector_cross/5.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/dvector_cross/8.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/dvector_cross/6.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/dvector_cross/7.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-
-                                </tr>
-                              <tr>
-                                <th scope="colmun">(b) <em>d-vector</em> (mono)</th>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/dvector_mono/5.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/dvector_mono/8.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/dvector_mono/6.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-                                <td>
-                                  <audio controls>
-                                    <source src="./audio/wavernn/dvector_mono/7.wav" type="audio/wav" />
-                                    Your browser does not support the audio element.
-                                  </audio>
-                                </td>
-
-                                </tr>
-                                <tr>
-                                  <th scope="colmun">(c) <em>LA-SE</em> (cross)</th>
-                                  <td>
-                                    <audio controls>
-                                      <source src="./audio/wavernn/lase_cross/5.wav" type="audio/wav" />
-                                      Your browser does not support the audio element.
-                                    </audio>
-                                  </td>
-                                  <td>
-                                    <audio controls>
-                                      <source src="./audio/wavernn/lase_cross/8.wav" type="audio/wav" />
-                                      Your browser does not support the audio element.
-                                    </audio>
-                                  </td>
-                                  <td>
-                                    <audio controls>
-                                      <source src="./audio/wavernn/lase_cross/6.wav" type="audio/wav" />
-                                      Your browser does not support the audio element.
-                                    </audio>
-                                  </td>
-                                  <td>
-                                    <audio controls>
-                                      <source src="./audio/wavernn/lase_cross/7.wav" type="audio/wav" />
-                                      Your browser does not support the audio element.
-                                    </audio>
-                                  </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="colmun">(d) <em>LA-SE</em> (mono)</th>
-                                    <td>
-                                      <audio controls>
-                                        <source src="./audio/wavernn/lase_mono/5.wav" type="audio/wav" />
-                                        Your browser does not support the audio element.
-                                      </audio>
-                                    </td>
-                                    <td>
-                                      <audio controls>
-                                        <source src="./audio/wavernn/lase_mono/8.wav" type="audio/wav" />
-                                        Your browser does not support the audio element.
-                                      </audio>
-                                    </td>
-                                    <td>
-                                      <audio controls>
-                                        <source src="./audio/wavernn/lase_mono/6.wav" type="audio/wav" />
-                                        Your browser does not support the audio element.
-                                      </audio>
-                                    </td>
-                                    <td>
-                                      <audio controls>
-                                        <source src="./audio/wavernn/lase_mono/7.wav" type="audio/wav" />
-                                        Your browser does not support the audio element.
-                                      </audio>
-                                    </td>
-                                    </tr>
-                                <tr>
-                                  <th scope="row">Reference    </th>
-                                  <td>
-                                    <audio controls>
-                                      <source src="./audio/wavernn/reference/5.wav" type="audio/wav" />
-                                      Your browser does not support the audio element.
-                                    </audio>
-                                  </td>
-                                  <td>
-                                    <audio controls>
-                                      <source src="./audio/wavernn/reference/8.wav" type="audio/wav" />
-                                      Your browser does not support the audio element.
-                                    </audio>
-                                  </td>
-                                  <td>
-                                    <audio controls>
-                                      <source src="./audio/wavernn/reference/6.wav" type="audio/wav" />
-                                      Your browser does not support the audio element.
-                                    </audio>
-                                  </td>
-                                  <td>
-                                    <audio controls>
-                                      <source src="./audio/wavernn/reference/7.wav" type="audio/wav" />
-                                      Your browser does not support the audio element.
-                                    </audio>
-                                  </td>
-                                  </tr>
                       </tbody>
                     </table>
                   </div>
@@ -530,15 +267,15 @@
       <hr>
 
       <div class="big-screen">
-        <b> (2) CycleVAE for Cross-Lingual Voice Conversion </b><br>
+        <b> (2) Using different self-attention blocks </b><br>
         <table class="table">
           <thead>
             <tr>
-              <th style="width:200px;">ENG &rarr; MAN</th>
-              <th>Female &rarr; Female </th>
-              <th>Female &rarr; Male</th>
-              <th>Male &rarr; Female</th>
-              <th>Male &rarr; Male</th>
+              <th style="width:200px;">System</th>
+              <th>Female &rarr; Female (F2F) </th>
+              <th>Female &rarr; Male (F2M)</th>
+              <th>Male &rarr; Female (M2F)</th>
+              <th>Male &rarr; Male (M2M)</th>
             </tr>
           </thead>
           <tbody>
@@ -546,25 +283,25 @@
               <th scope="row">Source    </th>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/source/2.wav" type="audio/wav" />
+                  <source src="./audio/attention/source/clb2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/source/4.wav" type="audio/wav" />
+                  <source src="./audio/attention/source/clb2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/source/1.wav" type="audio/wav" />
+                  <source src="./audio/attention/source/rms2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/source/3.wav" type="audio/wav" />
+                  <source src="./audio/attention/source/rms2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
@@ -574,442 +311,308 @@
               <th scope="row">Target    </th>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/target/2.wav" type="audio/wav" />
+                  <source src="./audio/attention/target/clb2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/target/4.wav" type="audio/wav" />
+                  <source src="./audio/attention/target/clb2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/target/1.wav" type="audio/wav" />
+                  <source src="./audio/attention/target/rms2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/target/3.wav" type="audio/wav" />
-                  Your browser does not support the audio element.
-                </audio>
-              </td>
-
-              </tr>
-            <tr>
-              <th scope="row">(a) <em>d-vector</em> </th>
-              <td>
-                <audio controls>
-                  <source src="./audio/cyclevae/dvector/2.wav" type="audio/wav" />
-                  Your browser does not support the audio element.
-                </audio>
-              </td>
-              <td>
-                <audio controls>
-                  <source src="./audio/cyclevae/dvector/4.wav" type="audio/wav" />
-                  Your browser does not support the audio element.
-                </audio>
-              </td>
-              <td>
-                <audio controls>
-                  <source src="./audio/cyclevae/dvector/1.wav" type="audio/wav" />
-                  Your browser does not support the audio element.
-                </audio>
-              </td>
-              <td>
-                <audio controls>
-                  <source src="./audio/cyclevae/dvector/3.wav" type="audio/wav" />
+                  <source src="./audio/attention/target/rms2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
 
               </tr>
             <tr>
-              <th scope="colmun">(b) <em>LA-SE</em></th>
+              <th scope="row">(a) <em>FUSE</em> </th>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/lase/2.wav" type="audio/wav" />
+                  <source src="./audio/attention/fuse/clb2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/lase/4.wav" type="audio/wav" />
+                  <source src="./audio/attention/fuse/clb2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/lase/1.wav" type="audio/wav" />
+                  <source src="./audio/attention/fuse/rms2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/cyclevae/lase/3.wav" type="audio/wav" />
+                  <source src="./audio/attention/fuse/rms2bdl.wav" type="audio/wav" />
+                  Your browser does not support the audio element.
+                </audio>
+              </td>
+
+              </tr>
+            <tr>
+              <th scope="colmun">(b) <em>SAF</em></th>
+              <td>
+                <audio controls>
+                  <source src="./audio/attention/saf/clb2slt.wav" type="audio/wav" />
+                  Your browser does not support the audio element.
+                </audio>
+              </td>
+              <td>
+                <audio controls>
+                  <source src="./audio/attention/saf/clb2bdl.wav" type="audio/wav" />
+                  Your browser does not support the audio element.
+                </audio>
+              </td>
+              <td>
+                <audio controls>
+                  <source src="./audio/attention/saf/rms2slt.wav" type="audio/wav" />
+                  Your browser does not support the audio element.
+                </audio>
+              </td>
+              <td>
+                <audio controls>
+                  <source src="./audio/attention/saf/rms2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
 
               </tr>
               <tr>
-                <th scope="row">Reference    </th>
+                <th scope="colmun">(c) <em>SAV</em></th>
                 <td>
                   <audio controls>
-                    <source src="./audio/cyclevae/reference/2.wav" type="audio/wav" />
+                    <source src="./audio/attention/sav/clb2slt.wav" type="audio/wav" />
                     Your browser does not support the audio element.
                   </audio>
                 </td>
                 <td>
                   <audio controls>
-                    <source src="./audio/cyclevae/reference/4.wav" type="audio/wav" />
+                    <source src="./audio/attention/sav/clb2bdl.wav" type="audio/wav" />
                     Your browser does not support the audio element.
                   </audio>
                 </td>
                 <td>
                   <audio controls>
-                    <source src="./audio/cyclevae/reference/1.wav" type="audio/wav" />
+                    <source src="./audio/attention/sav/rms2slt.wav" type="audio/wav" />
                     Your browser does not support the audio element.
                   </audio>
                 </td>
                 <td>
                   <audio controls>
-                    <source src="./audio/cyclevae/reference/3.wav" type="audio/wav" />
+                    <source src="./audio/attention/sav/rms2bdl.wav" type="audio/wav" />
                     Your browser does not support the audio element.
                   </audio>
                 </td>
 
                 </tr>
+                <tr>
+                <th scope="colmun">(d) <em>Mel-S3R_VC</em></th>
+                  <td>
+                    <audio controls>
+                      <source src="./audio/attention/mels3r/clb2slt.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls>
+                      <source src="./audio/attention/mels3r/clb2bdl.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls>
+                      <source src="./audio/attention/mels3r/rms2slt.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls>
+                      <source src="./audio/attention/mels3r/rms2bdl.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+
+                  </tr>
+
             </p>
-                  <div class="big-screen">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th style="width:200px;">MAN &rarr; ENG</th>
-                          <th>Female &rarr; Female </th>
-                          <th>Female &rarr; Male</th>
-                          <th>Male &rarr; Female</th>
-                          <th>Male &rarr; Male</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">Source    </th>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/source/5.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/source/8.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/source/6.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/source/7.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
 
-                          </tr>
-                        <tr>
-                          <th scope="row">Target    </th>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/target/5.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/target/8.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/target/6.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/target/7.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-
-                          </tr>
-                        <tr>
-                          <th scope="row">(a) <em>d-vector</em> </th>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/dvector/5.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/dvector/8.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/dvector/6.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/dvector/7.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-
-                          </tr>
-                        <tr>
-                          <th scope="colmun">(b) <em>LA-SE</em></th>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/lase/5.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/lase/8.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/lase/6.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          <td>
-                            <audio controls>
-                              <source src="./audio/cyclevae/lase/7.wav" type="audio/wav" />
-                              Your browser does not support the audio element.
-                            </audio>
-                          </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Reference    </th>
-                            <td>
-                              <audio controls>
-                                <source src="./audio/cyclevae/reference/5.wav" type="audio/wav" />
-                                Your browser does not support the audio element.
-                              </audio>
-                            </td>
-                            <td>
-                              <audio controls>
-                                <source src="./audio/cyclevae/reference/8.wav" type="audio/wav" />
-                                Your browser does not support the audio element.
-                              </audio>
-                            </td>
-                            <td>
-                              <audio controls>
-                                <source src="./audio/cyclevae/reference/6.wav" type="audio/wav" />
-                                Your browser does not support the audio element.
-                              </audio>
-                            </td>
-                            <td>
-                              <audio controls>
-                                <source src="./audio/cyclevae/reference/7.wav" type="audio/wav" />
-                                Your browser does not support the audio element.
-                              </audio>
-                            </td>
-
-                            </tr>
           </tbody>
         </table>
       </div>
     <hr>
     </p>
       <div class="big-screen">
-        <b> (3) Tacotron-2 for Text-to-Speech Synthesis </b><br>
-        <hr>
-        <p><b>Source</b>:   "Allow me to highlight a number of points."</p>
+        <b> (3) Different combination methods </b><br>
         <table class="table">
           <thead>
             <tr>
-              <th style="width:200px;"></th>
-              <th> Target </th>
-              <th>(a) <em>d-vector</em></th>
-              <th>(b) <em>LA-SE</em></th>
-              <th>Reference<th>
+              <th style="width:200px;">System</th>
+              <th>Female &rarr; Female (F2F) </th>
+              <th>Female &rarr; Male (F2M)</th>
+              <th>Male &rarr; Female (M2F)</th>
+              <th>Male &rarr; Male (M2M)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">Target Speaker 1 (Female)    </th>
+              <th scope="row">Source    </th>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/target/1.wav" type="audio/wav" />
+                  <source src="./audio/concat/source/clb2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/dvector/1.wav" type="audio/wav" />
+                  <source src="./audio/concat/source/clb2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/lase/1.wav" type="audio/wav" />
+                  <source src="./audio/concat/source/rms2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/reference/1.wav" type="audio/wav" />
+                  <source src="./audio/concat/source/rms2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
 
               </tr>
-          </tbody>
-        </table>
-        <hr>
-        <p><b>Source</b>:   "In reality, the European Parliament is practising delay tactics."</p>
-        <table class="table">
-          <thead>
             <tr>
-              <th style="width:200px;"></th>
-              <th> Target </th>
-              <th>(a) <em>d-vector</em></th>
-              <th>(b) <em>LA-SE</em></th>
-              <th>Reference<th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Target Speaker 2 (Female)    </th>
+              <th scope="row">Target    </th>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/target/2.wav" type="audio/wav" />
+                  <source src="./audio/concat/target/clb2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/dvector/2.wav" type="audio/wav" />
+                  <source src="./audio/concat/target/clb2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/lase/2.wav" type="audio/wav" />
+                  <source src="./audio/concat/target/rms2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/reference/2.wav" type="audio/wav" />
-                  Your browser does not support the audio element.
-                </audio>
-              </td>
-              </tr>
-          </tbody>
-        </table>
-        <hr>
-        <p><b>Source</b>:   "We are in the middle of the negotiating process."</p>
-        <table class="table">
-          <thead>
-            <tr>
-              <th style="width:200px;"></th>
-              <th> Target </th>
-              <th>(a) <em>d-vector</em></th>
-              <th>(b) <em>LA-SE</em></th>
-              <th>Reference<th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Targe Speaker 3 (Male)    </th>
-              <td>
-                <audio controls>
-                  <source src="./audio/tts/target/3.wav" type="audio/wav" />
-                  Your browser does not support the audio element.
-                </audio>
-              </td>
-              <td>
-                <audio controls>
-                  <source src="./audio/tts/dvector/3.wav" type="audio/wav" />
-                  Your browser does not support the audio element.
-                </audio>
-              </td>
-              <td>
-                <audio controls>
-                  <source src="./audio/tts/lase/3.wav" type="audio/wav" />
-                  Your browser does not support the audio element.
-                </audio>
-              </td>
-              <td>
-                <audio controls>
-                  <source src="./audio/tts/reference/3.wav" type="audio/wav" />
+                  <source src="./audio/concat/target/rms2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
 
               </tr>
-          </tbody>
-        </table>
-        <hr>
-        <p><b>Source</b>:   "Legislation is already in place to achieve these aims"</p>
-        <table class="table">
-          <thead>
             <tr>
-              <th style="width:200px;"></th>
-              <th>Target</th>
-              <th>(a) <em>d-vector</em></th>
-              <th>(b) <em>LA-SE</em></th>
-              <th>Reference<th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row"> Target Speaker 4 (Male)    </th>
+              <th scope="row">(a) <em>CONCAT</em>  </th>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/target/4.wav" type="audio/wav" />
+                  <source src="./audio/concat/concat/clb2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/dvector/4.wav" type="audio/wav" />
+                  <source src="./audio/concat/concat/clb2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/lase/4.wav" type="audio/wav" />
+                  <source src="./audio/concat/concat/rms2slt.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
               <td>
                 <audio controls>
-                  <source src="./audio/tts/reference/4.wav" type="audio/wav" />
+                  <source src="./audio/concat/concat/rms2bdl.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </td>
 
               </tr>
+            <tr>
+              <th scope="colmun">(b) <em>FUSE</em></th>
+              <td>
+                <audio controls>
+                  <source src="./audio/concat/fuse/clb2slt.wav" type="audio/wav" />
+                  Your browser does not support the audio element.
+                </audio>
+              </td>
+              <td>
+                <audio controls>
+                  <source src="./audio/concat/fuse/clb2bdl.wav" type="audio/wav" />
+                  Your browser does not support the audio element.
+                </audio>
+              </td>
+              <td>
+                <audio controls>
+                  <source src="./audio/concat/fuse/rms2slt.wav" type="audio/wav" />
+                  Your browser does not support the audio element.
+                </audio>
+              </td>
+              <td>
+                <audio controls>
+                  <source src="./audio/concat/fuse/rms2bdl.wav" type="audio/wav" />
+                  Your browser does not support the audio element.
+                </audio>
+              </td>
+
+              </tr>
+              <tr>
+                <th scope="colmun">(c) <em>Mel-S3R_VC</em></th>
+                <td>
+                  <audio controls>
+                    <source src="./audio/concat/mels3r/clb2slt.wav" type="audio/wav" />
+                    Your browser does not support the audio element.
+                  </audio>
+                </td>
+                <td>
+                  <audio controls>
+                    <source src="./audio/concat/mels3r/clb2bdl.wav" type="audio/wav" />
+                    Your browser does not support the audio element.
+                  </audio>
+                </td>
+                <td>
+                  <audio controls>
+                    <source src="./audio/concat/mels3r/rms2slt.wav" type="audio/wav" />
+                    Your browser does not support the audio element.
+                  </audio>
+                </td>
+                <td>
+                  <audio controls>
+                    <source src="./audio/concat/mels3r/rms2bdl.wav" type="audio/wav" />
+                    Your browser does not support the audio element.
+                  </audio>
+                </td>
+                </tr>
+
+            </p>
+
+          </tbody>
+        </table>
+
           </tbody>
         </table>
       </div>
@@ -1017,18 +620,6 @@
 </div>
 </div>
   <hr>
-      <div class="row" id="ref">
-        <div class="col">
-          <h2>References</h2>
-          <div>
-            <p>
-              <a name="1">[1]</a>
-               Mirjam Wester and Hui Liang, “The emime mandarin bilingual database,” Tech. Rep. EDI-INF-RR-1396, The
-               University of Edinburgh, 2011.
-            </p>
-          </div>
-        </div>
-      </div>
       <hr>
       <!-- <div class="row" id="contact">
           <div class="col">
