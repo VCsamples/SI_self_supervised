@@ -52,11 +52,11 @@
                           <p>
               <div class="row">
                 <div class="col-md col-sm-12"><a class="text-light"
-                    href="https://scholar.google.com/citations?user=-atAl-YAAAAJ&hl=en&oi=ao">Jichen Yang, <em>Senior Member, IEEE</em> </a> </div>
+                    href="https://scholar.google.com/citations?user=-atAl-YAAAAJ&hl=en&oi=ao">Jichen Yang, </a> </div>
                 <div class="col-md col-sm-12"><a class="text-light"
-                    href="https://scholar.google.com/citations?hl=en&user=_POzpM4AAAAJ">Yi Zhou, <em>Student Member, IEEE</em>  </a> </div>
+                    href="https://scholar.google.com/citations?hl=en&user=_POzpM4AAAAJ">Yi Zhou,  </a> </div>
                 <div class="col-md col-sm-12"><a class="text-light"
-                    href="">Hao Huang, <em>Member, IEEE</em> </a>  </div>
+                    href="">Hao Huang, </a>  </div>
               </div>
             </p>
 
@@ -85,10 +85,10 @@
 </br>
                   <b> (2) Using different self-attention blocks</b>:<br>
                           The second group presents an ablation study about the self-attention. We compare the following 4 systems:<br>
-                          (a) <em>FUSE</em> : In this system, the Mel-S3R network only consists of the fuse-attention block (FA) while the input and output attention blocks are discarded. <br>
-                          (b) <em>SAF</em> : The Mel-S3R network has the input attention block SAF and the fuse-attention FA. Features obtained by such a Mel-S3R network are used as the voice conversion network input.<br>
-                          (c) <em>SAV</em> : In this system, the speech representation is obtained by the FA and the SAV blocks.<br>
-                          (d) <em>Mel-S3R_VC</em> : The proposed Mel-S3R network with SAF, FA, and the SAV.<br>
+                          (a) <em>FUSE</em> : In this system, the Mel-S3R network only consists of the fuse-level fuse-attention block (FFA) while the input and output attention blocks are discarded. <br>
+                          (b) <em>ISA-FFA</em> : The Mel-S3R network has the input attention block input-level self-attent (ISA) and the FFA. Features obtained by such a Mel-S3R network are used as the voice conversion network input.<br>
+                          (c) <em>FFA-OSA</em> : In this system, the speech representation is obtained by the FFA and the output-level self-attention (OSA) blocks.<br>
+                          (d) <em>Mel-S3R_VC</em> : The proposed Mel-S3R network with ISA, FFA, and OSA.<br>
                   </br>
 
                   <b> (3) Different combination methods:</b><br>
@@ -364,7 +364,7 @@
 
               </tr>
             <tr>
-              <th scope="colmun">(b) <em>SAF</em></th>
+              <th scope="colmun">(b) <em>ISA-FFA</em></th>
               <td>
                 <audio controls>
                   <source src="./audio/attention/saf/clb2slt.wav" type="audio/wav" />
@@ -392,7 +392,7 @@
 
               </tr>
               <tr>
-                <th scope="colmun">(c) <em>SAV</em></th>
+                <th scope="colmun">(c) <em>FFA-OSA</em></th>
                 <td>
                   <audio controls>
                     <source src="./audio/attention/sav/clb2slt.wav" type="audio/wav" />
